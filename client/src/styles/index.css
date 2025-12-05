@@ -1,0 +1,509 @@
+:root {
+    /* MÀU SẮC: Dark Minimal */
+    --bg-body: #09090b;       /* Đen thẫm (gần như đen tuyệt đối) */
+    --bg-panel: #18181b;      /* Xám đen (Zinc 900) */
+    --bg-input: #27272a;      /* Xám đậm (Zinc 800) */
+    
+    --text-main: #f4f4f5;     /* Trắng xám (dễ đọc hơn trắng tinh) */
+    --text-muted: #a1a1aa;    /* Xám nhạt */
+    
+    --accent: #22d3ee;        /* Cyan Neon (Giữ lại chút vibe Retro) */
+    --accent-hover: #06b6d4;
+    --danger: #f87171;
+    
+    --border: #27272a;        /* Viền xám rất mờ */
+    --radius: 8px;            /* Bo góc chuẩn mực */
+    --sidebar-width: 260px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    height: 100vh;
+    overflow: hidden;
+    /* Hiệu ứng nền noise nhẹ cho sang (tùy chọn) */
+    background-image: radial-gradient(circle at top right, #1e1b4b, transparent 40%);
+}
+
+.app-wrapper { display: flex; height: 100vh; }
+
+/* --- 1. SIDEBAR --- */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--bg-body); /* Cùng màu nền để tạo cảm giác liền mạch */
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column;
+    padding: 24px;
+}
+
+.logo-box {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 40px;
+    font-size: 16px; font-weight: 700; color: #fff; letter-spacing: 0.5px;
+}
+.logo-icon { 
+    color: var(--accent); 
+    background: rgba(34, 211, 238, 0.1); 
+    width: 32px; height: 32px; 
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 6px;
+}
+
+.nav-group-label {
+    font-size: 11px; font-weight: 600; color: var(--text-muted);
+    text-transform: uppercase; margin-bottom: 10px;
+}
+
+.nav-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px; width: 100%;
+    background: transparent; border: 1px solid transparent;
+    border-radius: var(--radius);
+    color: var(--text-muted); font-size: 14px; font-weight: 500;
+    cursor: pointer; transition: 0.2s; margin-bottom: 4px; text-align: left;
+}
+.nav-item:hover { 
+    color: #fff; background: var(--bg-panel); 
+}
+.nav-item.active { 
+    background: rgba(34, 211, 238, 0.1); /* Nền Cyan rất nhạt */
+    color: var(--accent); 
+    border-color: rgba(34, 211, 238, 0.2);
+}
+
+.role-card {
+    margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border);
+    display: flex; align-items: center; gap: 12px;
+}
+.user-avatar {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--bg-input);
+    display: flex; align-items: center; justify-content: center; font-size: 12px; color: #fff;
+}
+
+/* --- 2. MAIN CONTENT --- */
+.main-content { flex: 1; padding: 40px; overflow-y: auto; }
+
+.top-header { margin-bottom: 30px; }
+.top-header h1 { font-size: 26px; font-weight: 600; color: #fff; margin-bottom: 5px; }
+.subtitle { color: var(--text-muted); }
+
+/* PANELS & CARDS */
+.glass-panel {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px; margin-bottom: 24px;
+}
+
+/* INPUTS */
+.search-box input, .user-select, textarea {
+    width: 100%; padding: 12px;
+    background: var(--bg-input);
+    border: 1px solid var(--border); 
+    border-radius: var(--radius);
+    font-size: 14px; color: #fff; transition: 0.2s;
+}
+.search-box input:focus, textarea:focus, .user-select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent); /* Glow nhẹ khi focus */
+}
+.control-bar { display: flex; gap: 12px; align-items: center; }
+.search-box { flex: 1; position: relative; }
+.search-box i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+.search-box input { padding-left: 38px; }
+
+/* BUTTONS */
+.btn {
+    padding: 10px 20px; border-radius: var(--radius); font-weight: 500; font-size: 14px;
+    border: 1px solid transparent; cursor: pointer; transition: 0.2s;
+    display: inline-flex; align-items: center; gap: 8px; justify-content: center;
+}
+.btn-primary { 
+    background: var(--accent); color: #000; /* Chữ đen trên nền Cyan */
+    font-weight: 600;
+}
+.btn-primary:hover { 
+    background: var(--accent-hover); 
+    box-shadow: 0 0 10px rgba(34, 211, 238, 0.3); /* Glow nhẹ khi hover */
+}
+.btn-sm { padding: 6px 12px; font-size: 12px; }
+
+/* TABLE */
+.modern-table { width: 100%; border-collapse: collapse; }
+.modern-table th {
+    text-align: left; padding: 12px 16px; 
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted); font-size: 12px; font-weight: 600; text-transform: uppercase;
+}
+.modern-table td {
+    padding: 16px; border-bottom: 1px solid var(--border); 
+    color: var(--text-main); font-size: 14px;
+}
+.modern-table tr:last-child td { border-bottom: none; }
+.modern-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+.price { color: var(--accent); font-weight: 600; font-family: monospace; font-size: 15px; }
+
+/* STATS */
+.stats-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+.stat-box { display: flex; align-items: center; justify-content: space-between; }
+.stat-num { font-size: 32px; font-weight: 600; color: #fff; }
+.stat-box i { font-size: 24px; opacity: 0.5; }
+.stat-box.green i { color: var(--accent); }
+.stat-box.blue i { color: #818cf8; }
+
+/* TOAST */
+.toast {
+    position: fixed; top: 24px; right: 24px;
+    background: var(--bg-panel); border: 1px solid var(--border);
+    padding: 12px 16px; border-radius: var(--radius);
+    color: #fff; display: flex; align-items: center; gap: 10px; z-index: 100;
+}
+.notify-success { border-left: 3px solid var(--accent); }
+.notify-error { border-left: 3px solid var(--danger); }
+
+.grid-products {
+    display: grid;
+    /* Tự động tính toán số cột, mỗi cột tối thiểu 220px */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+    padding-bottom: 40px;
+}
+
+/* 2. Thẻ sản phẩm */
+.product-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 12px; /* Bo góc mềm mại hơn */
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hiệu ứng khi di chuột vào thẻ */
+.product-card:hover {
+    transform: translateY(-5px); /* Nổi lên nhẹ */
+    border-color: var(--accent); /* Viền sáng lên */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* 3. Phần ảnh giả lập (Quan trọng để giống mẫu) */
+.card-image-placeholder {
+    width: 100%;
+    aspect-ratio: 1/1; /* Tỷ lệ vuông giống bìa album */
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%); /* Gradient tối */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+}
+
+/* Icon thay thế cho ảnh */
+.card-image-placeholder i {
+    font-size: 40px;
+    color: var(--text-muted);
+    opacity: 0.3;
+    transition: 0.3s;
+}
+
+.product-card:hover .card-image-placeholder i {
+    color: var(--accent);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* 4. Nội dung thẻ */
+.card-content {
+    padding: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+    
+    /* Cắt chữ nếu tên quá dài (2 dòng) */
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-shop {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+/* 5. Chân thẻ (Giá + Nút) */
+.card-footer {
+    margin-top: auto; /* Đẩy xuống đáy */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border); /* Đường kẻ đứt nét phong cách */
+}
+
+.price-tag {
+    color: var(--accent);
+    font-weight: 700;
+    font-family: monospace; /* Font số kỹ thuật */
+    font-size: 16px;
+}
+
+/* Nút hành động nhỏ gọn */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: 0.2s;
+}
+
+.btn-icon:hover {
+    color: #fff;
+    border-color: #fff;
+    background: rgba(255,255,255,0.1);
+}
+
+.btn-icon.delete:hover {
+    color: var(--danger);
+    border-color: var(--danger);
+    background: rgba(239, 68, 68, 0.1);
+}
+
+/* Decor góc thẻ (Giống hình mẫu có vạch màu) */
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 0;
+    background: var(--accent);
+    transition: 0.3s;
+}
+.product-card:hover::before {
+    height: 100%; /* Kéo dài vạch màu khi hover */
+}
+
+/* --- FORM STYLES --- */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Chia 2 cột đều nhau */
+    gap: 24px; /* Khoảng cách giữa các ô */
+    margin-bottom: 24px;
+}
+
+/* Trường hợp muốn full chiều rộng (như Mô tả) */
+.form-full {
+    grid-column: 1 / -1;
+}
+
+/* 2. Input Group (Bao gồm Label + Input) */
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase; /* Chữ in hoa kiểu kỹ thuật */
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.input-label i {
+    color: var(--accent); /* Icon nhỏ màu Cyan */
+    font-size: 10px;
+}
+
+/* 3. Input Fields Refined */
+.form-control {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--bg-input); /* Màu xám đậm */
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+/* Hiệu ứng Focus (Quan trọng) */
+.form-control:focus {
+    border-color: var(--accent);
+    background: #000; /* Nền đen sâu hơn khi nhập */
+    box-shadow: 0 0 0 1px var(--accent); /* Viền sáng Cyan */
+}
+
+/* Placeholder màu tối hơn */
+.form-control::placeholder {
+    color: #52525b;
+}
+
+/* 4. Form Actions (Nút bấm) */
+.form-actions {
+    display: flex;
+    justify-content: flex-end; /* Đẩy nút sang phải */
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    margin-top: 10px;
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+}
+.btn-ghost:hover {
+    color: #fff;
+    border-color: #fff;
+}
+
+/* --- ANIMATIONS SYSTEM --- */
+
+/* 1. Keyframes Definition */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px); /* Trượt từ dưới lên 15px */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* 2. Utility Classes for Animation */
+.animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Hiệu ứng xuất hiện cho các Panel/Card chính */
+.view-container {
+    animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; /* Easing mượt kiểu Apple */
+}
+
+/* 3. Staggered List (Hiệu ứng xuất hiện lần lượt) */
+/* Áp dụng cho danh sách sản phẩm, các thẻ sẽ hiện lần lượt thay vì hiện 1 cục */
+.product-card {
+    opacity: 0; /* Ẩn mặc định */
+    animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Delay cho 10 phần tử đầu tiên */
+.product-card:nth-child(1) { animation-delay: 0.05s; }
+.product-card:nth-child(2) { animation-delay: 0.10s; }
+.product-card:nth-child(3) { animation-delay: 0.15s; }
+.product-card:nth-child(4) { animation-delay: 0.20s; }
+.product-card:nth-child(5) { animation-delay: 0.25s; }
+.product-card:nth-child(6) { animation-delay: 0.30s; }
+.product-card:nth-child(7) { animation-delay: 0.35s; }
+.product-card:nth-child(8) { animation-delay: 0.40s; }
+.product-card:nth-child(9) { animation-delay: 0.45s; }
+.product-card:nth-child(10) { animation-delay: 0.50s; }
+
+/* 4. Interactive Hover Effects (Nâng cao trải nghiệm click) */
+.btn, .nav-item, .product-card, .form-control {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:active {
+    transform: scale(0.96); /* Nhấn xuống nhẹ khi click */
+}
+
+/* Hiệu ứng focus input */
+.form-control:focus {
+    transform: translateY(-1px);
+}
+
+/* 5. Loading Skeleton (Hiệu ứng xương khi đang tải) */
+.skeleton {
+    background: #18181b;
+    background-image: linear-gradient(
+        90deg, 
+        #18181b 25%, 
+        #27272a 50%, 
+        #18181b 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 6px;
+}
+.skeleton-text { height: 16px; margin-bottom: 8px; width: 100%; }
+.skeleton-img { width: 100%; height: 100%; }
+
+.card-image-placeholder {
+    width: 100%;
+    aspect-ratio: 1/1; 
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden; /* Quan trọng để ảnh không tràn ra ngoài */
+}
+
+/* Thêm class mới cho ảnh */
+.product-img-display {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Giúp ảnh luôn lấp đầy khung mà không bị méo */
+    transition: transform 0.5s ease;
+}
+
+/* Hiệu ứng zoom nhẹ khi hover vào card */
+.product-card:hover .product-img-display {
+    transform: scale(1.1);
+}
+
+/* Style cho icon fallback */
+.fallback-icon {
+    font-size: 40px;
+    color: var(--text-muted);
+    opacity: 0.3;
+}
