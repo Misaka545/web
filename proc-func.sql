@@ -407,7 +407,7 @@ SELECT
     username, 
     fn_classifyBuyerRank(userID) AS Rank_Calculated
 FROM USERS 
-WHERE userID IN (11, 12, 13);
+WHERE userID IN (11, 12, 13, 14, 15);
 
 
 
