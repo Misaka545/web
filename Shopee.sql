@@ -289,9 +289,15 @@ CREATE TRIGGER trg_after_insert_order_voucher
 AFTER INSERT ON ORDER_VOUCHER
 FOR EACH ROW
 BEGIN
+    DECLARE curr_buyer_id INT;
+
+    SELECT buyerID INTO curr_buyer_id
+    FROM ORDERS
+    WHERE orderID = NEW.orderID;
+    
     UPDATE OWN_VOUCHER
     SET used = TRUE
-    WHERE buyerID = NEW.buyerID
+    WHERE buyerID = curr_buyer_id
       AND voucherID = NEW.voucherID;
 END$$
 -- Kiểm tra voucher đã sử dụng trước khi áp dụng
@@ -300,10 +306,15 @@ BEFORE INSERT ON ORDER_VOUCHER
 FOR EACH ROW
 BEGIN
     DECLARE is_used BOOLEAN;
+    DECLARE curr_buyer_id INT;
+
+    SELECT buyerID INTO curr_buyer_id
+    FROM ORDERS
+    WHERE orderID = NEW.orderID;
 
     SELECT used INTO is_used
     FROM OWN_VOUCHER
-    WHERE buyerID = NEW.buyerID
+    WHERE buyerID = curr_buyer_id
       AND voucherID = NEW.voucherID;
 
     -- Nếu voucher không tồn tại hoặc đã dùng
